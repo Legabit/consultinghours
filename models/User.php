@@ -53,17 +53,17 @@ class User implements IUser {
 	}
 
 	//obtenemos usuarios de una tabla con postgreSql
-	public function viewStudent(){
+	public function get(){
 		try{
             if(is_int($this->id)){
-                $query = $this->con->prepare('SELECT Profesor,start,finish,subject,topic FROM availableDates WHERE student = ?');
+                $query = $this->con->prepare('SELECT Profesor,date,start,finish,subject,topic FROM availableDates WHERE student = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
     			$this->con->close();
     			return $query->fetch(PDO::FETCH_OBJ);
             }
             else{
-                $query = $this->con->prepare('SELECT * FROM availableDates');
+                $query = $this->con->prepare('SELECT * FROM users');
     			$query->execute();
     			$this->con->close();
     			return $query->fetchAll(PDO::FETCH_OBJ);

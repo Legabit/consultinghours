@@ -13,7 +13,7 @@
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Student Interface</h2>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block" href="<?php echo User::baseurl() ?>app/view.php">View Apointments</a>
+                    <a class="btn btn-info btn-block" href="view.php">View Apointments</a>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
                     <a class="btn btn-info btn-block" >Make Apointment</a>

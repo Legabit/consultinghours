@@ -10,7 +10,7 @@
         require_once "../models/User.php";
         $db = new Database;
         $user = new User($db);
-        $users = $user->get();
+        $users = $user->viewStudent();
         ?>
         <div class="container">
             <div class="col-lg-12">

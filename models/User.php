@@ -53,7 +53,7 @@ class User implements IUser {
 	}
 
 	//obtenemos usuarios de una tabla con postgreSql
-	public function get(){
+	public function viewStudent(){
 		try{
             if(is_int($this->id)){
                 $query = $this->con->prepare('SELECT Profesor,date,start,finish,subject,topic FROM availableDates WHERE student = ?');

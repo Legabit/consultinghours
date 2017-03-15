@@ -6,9 +6,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
-        <?php
-        require_once "../models/User.php";
-        ?>
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Student Interface</h2>

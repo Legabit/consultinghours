@@ -8,7 +8,7 @@
     <body>
         <?php
         require_once "../models/User.php";
-        $paysheet = filter_input(INPUT_POST, 'student');
+        $paysheet = filter_input(INPUT_POST, 'professor');
         if( ! $paysheet )
         {
             header("Location:" . User::baseurl() . "app/list.php");
@@ -16,19 +16,19 @@
         $db = new Database;
         $user = new User($db);
         $user->setId($paysheet);
-        $users = $user->viewStudent();
+        $users = $user->viewProfessor();
         ?>
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Users List</h2>
-                <h2 class="text-center text-primary">A0<?php echo $paysheet; ?></h2>
+                <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
                 <?php
                 if( ! empty( $users ) )
                 {
                 ?>
                 <table class="table table-striped">
                     <tr>
-                        <th>Profesor</th>
+                        <th>Student</th>
                         <th>Date</th>
                         <th>Start</th>
                         <th>Finish</th>
@@ -38,7 +38,7 @@
                     {
                     ?>
                         <tr>
-                            <td><?php echo $user->Profesor ?></td>
+                            <td><?php echo $user->student ?></td>
                             <td><?php echo $user->date ?></td>
                             <td><?php echo $user->start ?></td>
                             <td><?php echo $user->finish ?></td>

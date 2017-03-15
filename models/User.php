@@ -4,7 +4,7 @@ require_once("../interfaces/IUser.php");
 class User implements IUser {
     private $con;
     private $id;
-
+    private $student;
     private $professor;
     private $date;
     private $start;
@@ -30,6 +30,9 @@ class User implements IUser {
     }
     public function setTopic($topic){
         $this->topic = $topic;
+    }
+    public function setStudent($student){
+        $this->student= $student;
     }
     //insertamos usuarios en una tabla con postgreSql
     public function save() {
@@ -61,7 +64,27 @@ class User implements IUser {
     public function viewStudent(){
         try{
             if(!empty($this->id)){
-                $query = $this->con->prepare('select hours.professor as "Profesor",date,hours.start,hours.finish,topic from availabledates,hours where officehour = hours.id and student = ?');
+                $query = $this->con->prepare('select hours.professor as "Profesor",(date)date,hours.start,hours.finish,topic from availabledates,hours where officehour = hours.id and student = ?');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            else{
+                $query = $this->con->prepare('SELECT * FROM student');
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function viewProfessor(){
+        try{
+            if(!empty($this->id)){
+                $query = $this->con->prepare('select availabledates.student,availabledates.date,start,finish,availabledates.topic from hours,availabledates where availabledates.officehour = hours.id and professor = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();
@@ -89,6 +112,26 @@ class User implements IUser {
             }
             else{
                 $query = $this->con->prepare('SELECT * FROM student');
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function getProfessor(){
+        try{
+            if(is_int($this->id)){
+                $query = $this->con->prepare('SELECT id FROM professor');
+                //$query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetch(PDO::FETCH_OBJ);
+            }
+            else{
+                $query = $this->con->prepare('SELECT * FROM professor');
                 $query->execute();
                 $this->con->close();
                 return $query->fetchAll(PDO::FETCH_OBJ);

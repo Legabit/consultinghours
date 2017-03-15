@@ -8,15 +8,28 @@
     <body>
         <?php
         require_once "../models/User.php";
+        $paysheet = filter_input(INPUT_POST, 'professor');
+        if( ! $paysheet )
+        {
+            header("Location:" . User::baseurl() . "app/list.php");
+        }
+        
         ?>
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Professor Interface</h2>
+                <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block">Show Apointments</a>
+                    <form action="showApointments.php" method="post">
+                        <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
+                        <input type="submit" class="btn btn-info btn-block" value="Show Apointments">
+                    </form>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block">Make schedule</a>
+                    <form action="makeSchedule.php" method="post">
+                        <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
+                        <input type="submit" class="btn btn-info btn-block" value="Make schedule">
+                    </form>
                 </div>
             </div>
         </div>

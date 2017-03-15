@@ -18,7 +18,7 @@
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Student Interface</h2>
-                <h2 class="text-center text-primary"><?php echo $paysheet; ?></h2>
+                <h2 class="text-center text-primary">A0<?php echo $paysheet; ?></h2>
                 <div class="col-lg-12" style="margin-bottom: 100px">
                     <form action="view.php" method="post">
                         <input type="hidden" value="<?php echo $paysheet; ?>" name="student">
@@ -26,7 +26,10 @@
                     </form>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block" >Make Apointment</a>
+                    <form action="makeApointment.php" method="post">
+                        <input type="hidden" value="<?php echo $paysheet; ?>" name="student">
+                        <input type="submit" class="btn btn-info btn-block" value="Make Apointment">
+                    </form>
                 </div>
             </div>
         </div>

@@ -56,7 +56,7 @@ class User implements IUser {
 	public function get(){
 		try{
             if(is_int($this->id)){
-                $query = $this->con->prepare('SELECT * FROM users WHERE id = ?');
+                $query = $this->con->prepare('SELECT Profesor,date,start,finish,subject,topic FROM availableDates WHERE student = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
     			$this->con->close();
@@ -88,7 +88,7 @@ class User implements IUser {
     }
 
     public static function baseurl() {
-         return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/crudpgsql/";
+         return stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://' . $_SERVER['HTTP_HOST'] . "/consultinghours/";
     }
 
     public function checkUser($user) {

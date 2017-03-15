@@ -6,11 +6,24 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
+        <?php
+        require_once "../models/User.php";
+        $paysheet = filter_input(INPUT_POST, 'student');
+        if( ! $paysheet )
+        {
+            header("Location:" . User::baseurl() . "app/list.php");
+        }
+        
+        ?>
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Student Interface</h2>
+                <h2 class="text-center text-primary"><?php echo $paysheet; ?></h2>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block" href="view.php">View Apointments</a>
+                    <form action="view.php" method="post">
+                        <input type="hidden" value="<?php echo $paysheet; ?>" name="student">
+                        <input type="submit" class="btn btn-info btn-block" value="View Appointments">
+                    </form>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
                     <a class="btn btn-info btn-block" >Make Apointment</a>

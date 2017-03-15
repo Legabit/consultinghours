@@ -14,7 +14,7 @@
                     <a class="btn btn-info btn-block" href="professor.php">Professor</a>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <a class="btn btn-info btn-block" href="student.php">Student</a>
+                    <a class="btn btn-info btn-block" href="selectStudent.php">Student</a>
                 </div>
             </div>
         </div>

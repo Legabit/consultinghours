@@ -8,16 +8,20 @@
     <body>
         <?php
         require_once "../models/User.php";
+        $paysheet = filter_input(INPUT_POST, 'student');
+        if( ! $paysheet )
+        {
+            header("Location:" . User::baseurl() . "app/list.php");
+        }
         $db = new Database;
         $user = new User($db);
+        $user->setId($paysheet);
         $users = $user->viewStudent();
         ?>
         <div class="container">
             <div class="col-lg-12">
                 <h2 class="text-center text-primary">Users List</h2>
-                <div class="col-lg-1 pull-right" style="margin-bottom: 10px">
-                    <a class="btn btn-info" href="<?php echo User::baseurl() ?>/app/add.php">Add user</a>
-                </div>
+                <h2 class="text-center text-primary"><?php echo $paysheet; ?></h2>
                 <?php
                 if( ! empty( $users ) )
                 {
@@ -28,21 +32,18 @@
                         <th>Date</th>
                         <th>Start</th>
                         <th>Finish</th>
-                        <th>Subject</th>
                         <th>Topic</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
                     ?>
                         <tr>
-                            <td><?php echo $user->id ?></td>
-                            <td><?php echo $user->username ?></td>
-                            <td><?php echo $user->password ?></td>
-                            <td><?php echo $user->created_at ?></td>
-                            <td>
-                                <a class="btn btn-info" href="<?php echo User::baseurl() ?>app/edit.php?user=<?php echo $user->id ?>">Edit</a> 
-                                <a class="btn btn-info" href="<?php echo User::baseurl() ?>app/delete.php?user=<?php echo $user->id ?>">Delete</a>
-                            </td>
+                            <td><?php echo $user->Profesor ?></td>
+                            <td><?php echo $user->date ?></td>
+                            <td><?php echo $user->start ?></td>
+                            <td><?php echo $user->finish ?></td>
+                            <td><?php echo $user->topic ?></td>
+
                         </tr>
                     <?php
                     }

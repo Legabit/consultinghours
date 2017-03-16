@@ -5,8 +5,10 @@ if (empty($_POST['submit']))
       header("Location:" . User::baseurl() . "app/makeSchedule.php");
       exit;
 }
+
 session_start();
 $paysheet = $_SESSION['gg'];
+
 $args = array(
     'dia'  => FILTER_SANITIZE_STRING,
     'tipo'  => FILTER_SANITIZE_STRING,

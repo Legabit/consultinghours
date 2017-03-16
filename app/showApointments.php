@@ -39,7 +39,7 @@
                     ?>
                         <tr>
                             <td><?php echo $user->student ?></td>
-                            <td><?php echo $user->dia ?></td>
+                            <td><?php echo $user->date ?></td>
                             <td><?php echo $user->start ?></td>
                             <td><?php echo $user->finish ?></td>
                             <td><?php echo $user->topic ?></td>
@@ -54,7 +54,7 @@
                 else
                 {
                 ?>
-                <div class="alert alert-danger" style="margin-top: 100px">Any user has been registered</div>
+                <div class="alert alert-danger" style="margin-top: 100px">You dont have apointments</div>
                 <?php
                 }
                 ?>

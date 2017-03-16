@@ -12,7 +12,8 @@ $args = array(
     'start'  => FILTER_SANITIZE_STRING,
     'finish'  => FILTER_SANITIZE_STRING,
 );
-
+echo "<pre>";
+print_r($args); 
 $post = (object)filter_input_array(INPUT_POST, $args);
 $db = new Database;
 $user = new User($db);
@@ -21,5 +22,5 @@ $user->setTipo($post->tipo);
 $user->setStart($post->start);
 $user->setFinish($post->finish);
 $user->saveSchedule();
-header("Location:" . User::baseurl() . "app/list.php");
+//header("Location:" . User::baseurl() . "app/list.php");
 ?>

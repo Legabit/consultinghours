@@ -59,18 +59,18 @@ class User implements IUser {
     }
     public function saveSchedule() {
         try{
-            $new =('id from hours order by id desc LIMIT 1');
-            $new++;
-            $query =$this->con->prepare('INSERT INTO hours (id,dia, professor,time_start,time_finish,tipo,period) values (10,?,01326798,"19:00","20:00","officeHour",1');
-            //$query = $this->con->prepare('INSERT INTO hours (id,dia, professor,time_start,time_finish,tipo,period) values (10,?,?,?,?,?,1)');
+            //$new =('id from hours order by id desc LIMIT 1');
+            //$new++;
+            //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
+            $query = $this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (13,?,?,?,?,?,1)');
             //$query->bindParam(1,$new);
             $query->bindParam(1, $this->dia, PDO::PARAM_STR);
-            /*$query->bindParam(2, $this->professor, PDO::PARAM_STR);
+            $query->bindParam(2, $this->professor, PDO::PARAM_STR);
             $query->bindParam(3, $this->start, PDO::PARAM_STR);
             $query->bindParam(4, $this->finish, PDO::PARAM_STR);
-            $query->bindParam(5, $this->tipo, PDO::PARAM_STR);  */  
-            //$query->execute();
-            //$this->con->close(); 
+            $query->bindParam(5, $this->tipo, PDO::PARAM_STR);  
+            $query->execute();
+            $this->con->close(); 
         }
         catch(PDOException $e) {
             echo  $e->getMessage();
@@ -211,6 +211,4 @@ class User implements IUser {
         }
     }
 }
-
-
 ?>

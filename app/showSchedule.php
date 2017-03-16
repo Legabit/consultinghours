@@ -52,7 +52,7 @@
                 else
                 {
                 ?>
-                <div class="alert alert-danger" style="margin-top: 100px">Any user has been registered</div>
+                <div class="alert alert-danger" style="margin-top: 100px">You dont have schedule</div>
                 <?php
                 }
                 ?>

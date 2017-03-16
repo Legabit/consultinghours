@@ -15,17 +15,17 @@ CREATE TYPE hourType AS ENUM ('class', 'officeHour', 'freeHour');
 CREATE TYPE periods AS ENUM('AGO-DIC','VERANO','ENE-MAY');
 
 CREATE TABLE subject(
-	id				 int PRIMARY KEY,
+	id				 serial PRIMARY KEY,
 	name			 varchar(50),
 	professor		 int references professor(id)
 );
 CREATE TABLE period(
-    id               int PRIMARY KEY,
+    id               serial PRIMARY KEY,
     year             int,
     period           periods
 );
 CREATE TABLE hours(
-	id				 int PRIMARY KEY,
+	id				 serial PRIMARY KEY,
 	day 			 days,
 	professor		 int references professor(id),
 	start		     time,
@@ -35,7 +35,7 @@ CREATE TABLE hours(
 );
 
 CREATE TABLE availableDates (
-    id				 int PRIMARY KEY,
+    id				 serial PRIMARY KEY,
     officeHour		 int references hours(id),
     availability     boolean,
     date 			 timestamp,
@@ -106,12 +106,6 @@ BEGIN;
 INSERT INTO availableDates VALUES (4,8,FALSE,'2017-03-20',01321212,4,'inheritance');
 COMMIT;
 
-CREATE TRIGGER checkDay
-    AFTER INSERT ON availableDates
-    FOR EACH ROW
-    EXECUTE PROCEDURE correctDay();
-
-
 CREATE OR REPLACE FUNCTION correctDay ()
 RETURNS TRIGGER AS $boo$
 declare
@@ -149,7 +143,11 @@ BEGIN
 END;
 $boo$ LANGUAGE 'plpgsql';
 
-;
+CREATE TRIGGER checkDay
+    AFTER INSERT ON availableDates
+    FOR EACH ROW
+    EXECUTE PROCEDURE correctDay();
+
 CREATE OR REPLACE FUNCTION asesoriasDestudiante(i integer) RETURNS integer AS $$
 declare 
     horas integer;

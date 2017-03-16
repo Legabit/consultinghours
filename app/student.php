@@ -26,7 +26,7 @@
                     </form>
                 </div>
                 <div class="col-lg-12" style="margin-bottom: 100px">
-                    <form action="makeApointment.php" method="post">
+                    <form action="chooseProf.php" method="post">
                         <input type="hidden" value="<?php echo $paysheet; ?>" name="student">
                         <input type="submit" class="btn btn-info btn-block" value="Make Apointment">
                     </form>

@@ -2,42 +2,31 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Student</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
         <?php
         require_once "../models/User.php";
-        $paysheet = filter_input(INPUT_POST, 'professor');
-        if( ! $paysheet )
-        {
-            header("Location:" . User::baseurl() . "app/list.php");
-        }
         $db = new Database;
         $user = new User($db);
-        $user->setId($paysheet);
-        $users = $user->viewHours();
+        $users = $user->getProfessor();
         ?>
         <div class="container">
             <div class="col-lg-12">
-                <h2 class="text-center text-primary">Users List</h2>
-                <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
-
-                <form action="professor.php" method="post">
+                <h2 class="text-center text-primary">Select a Professor</h2>
+                <div class="col-lg-6 col-lg-offset-3">
+                    <form action="makeApointment.php" method="post">
                         <select name="professor" class="form-control">
                             <?php foreach( $users as $user ) {
-                                echo '<option value="'.$user->id.'">'.$user->id.' '.$user->day.' '.$user->start.' '.$user->finish.' '.$user->type. '</option>';
+                                echo '<option value="'.$user->id.'">'.$user->id.'</option>';
                             }
                             ?>
                         </select>
                         <br>
-                        <label for="date">Date (year-month-day):</label>
-                        <input type="date" name="date" class="form-control"/>
-                        <br>
                         <input class="btn btn-success col-lg-2 col-lg-offset-5" value="Continuar" type="submit">
                     </form>
-
-          
+                </div>
             </div>
         </div>
     </body>

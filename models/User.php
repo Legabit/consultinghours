@@ -62,7 +62,7 @@ class User implements IUser {
             //$new =('id from hours order by id desc LIMIT 1');
             //$new++;
             //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
-            $query = $this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (13,?,?,?,?,?,1)');
+            $query = $this->con->prepare('INSERT INTO hours (day, professor,start,finish,type,period) values (?,?,?,?,?,1)');
             //$query->bindParam(1,$new);
             $query->bindParam(1, $this->dia, PDO::PARAM_STR);
             $query->bindParam(2, $this->professor, PDO::PARAM_STR);
@@ -134,6 +134,26 @@ class User implements IUser {
         try{
             if(!empty($this->id)){
                 $query = $this->con->prepare('select availabledates.student,availabledates.date,start,finish,availabledates.topic from hours,availabledates where availabledates.officehour = hours.id and professor = ?');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            else{
+                $query = $this->con->prepare('SELECT * FROM student ');
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function viewHours(){
+        try{
+            if(!empty($this->id)){
+                $query = $this->con->prepare('select day,start,finish from hours where professor = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();

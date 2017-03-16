@@ -150,6 +150,26 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+    public function viewHours(){
+        try{
+            if(!empty($this->id)){
+                $query = $this->con->prepare('select day,start,finish from hours where professor = ?');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+            else{
+                $query = $this->con->prepare('SELECT * FROM student ');
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
     public function get(){
         try{
             if(is_int($this->id)){

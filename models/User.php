@@ -10,11 +10,21 @@ class User implements IUser {
     private $start;
     private $finish;
     private $topic;
+    private $day;
+    private $type;
     public function __construct(Database $db){
         $this->con = new $db;
     }
     public function setId($id){
         $this->id = $id;
+    }
+    public function setDay()
+    {
+        $this->day= $day;
+    }
+    public function setType()
+    {
+        $this->type= $type;
     }
     public function setProfessor($professor){
         $this->professor = $professor;
@@ -40,6 +50,24 @@ class User implements IUser {
             $query = $this->con->prepare('INSERT INTO users (username, password) values (?,?)');
             $query->bindParam(1, $this->username, PDO::PARAM_STR);
             $query->bindParam(2, $this->password, PDO::PARAM_STR);
+            $query->execute();
+            $this->con->close();
+        }
+        catch(PDOException $e) {
+            echo  $e->getMessage();
+        }
+    }
+    public function saveSchedule() {
+        try{
+            $new = $this->con->prepare('select id from hours order by id desc LIMIT 1');
+            $new++;
+            $query = $this->con->prepare('INSERT INTO hours (day, professor,time_start,time_finish,type,period,id) values (?,?,?,?,?,1,?)');
+            $query->bindParam(1, $this->day, PDO::PARAM_STR);
+            $query->bindParam(2, $this->professor, PDO::PARAM_STR);
+            $query->bindParam(3, $this->start, PDO::PARAM_STR);
+            $query->bindParam(4, $this->finish, PDO::PARAM_STR);
+            $query->bindParam(5, $this->type, PDO::PARAM_STR);
+             $query->bindParam(6,$new);
             $query->execute();
             $this->con->close();
         }

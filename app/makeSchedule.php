@@ -23,14 +23,10 @@
                        <input type="radio" name="day" value="Wednesday"> Wednesday<br>
                        <input type="radio" name="day" value="Thursday"> Thursday<br>
                        <input type="radio" name="day" value="Friday"> Friday<br> 
-                    </form>
-                    <form >            
                        <label for="type">Type of hour</label>  <br>
                         <input type="radio" name="type" value="class" checked> Class<br>
                        <input type="radio" name="type" value="officeHour"> Office Hour<br>
                        <input type="radio" name="type" value="freeHour"> Free Hour<br> 
-                    </form>
-                     <form >  
                         <br>
                         <label for="begin_hour">Begin Hour: (Format 15:30)</label>
                         <input type="time" name="begin" pattern="([0-1]{1}[0-9]{1}|20|21|22|23):[0-5]{1}[0-9]{1}" class="form-control"/>

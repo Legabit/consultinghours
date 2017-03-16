@@ -6,6 +6,9 @@ if (empty($_POST['submit']))
       exit;
 }
 
+session_start();
+$paysheet = $_SESSION['gg'];
+
 $args = array(
     'dia'  => FILTER_SANITIZE_STRING,
     'tipo'  => FILTER_SANITIZE_STRING,
@@ -17,10 +20,11 @@ print_r($args);
 $post = (object)filter_input_array(INPUT_POST, $args);
 $db = new Database;
 $user = new User($db);
+$user->setProfessor($paysheet);
 $user->setDia($post->dia);
 $user->setTipo($post->tipo);
 $user->setStart($post->start);
 $user->setFinish($post->finish);
 $user->saveSchedule();
-//header("Location:" . User::baseurl() . "app/list.php");
+header("Location:" . User::baseurl() . "app/list.php");
 ?>

@@ -62,7 +62,7 @@ class User implements IUser {
             //$new =('id from hours order by id desc LIMIT 1');
             //$new++;
             //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
-            $query = $this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (13,?,?,?,?,?,1)');
+            $query = $this->con->prepare('INSERT INTO hours (day, professor,start,finish,type,period) values (?,?,?,?,?,1)');
             //$query->bindParam(1,$new);
             $query->bindParam(1, $this->dia, PDO::PARAM_STR);
             $query->bindParam(2, $this->professor, PDO::PARAM_STR);

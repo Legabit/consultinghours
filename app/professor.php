@@ -9,6 +9,8 @@
         <?php
         require_once "../models/User.php";
         $paysheet = filter_input(INPUT_POST, 'professor');
+        session_start();
+        $_SESSION['gg'] = $paysheet;
         if( ! $paysheet )
         {
             header("Location:" . User::baseurl() . "app/list.php");

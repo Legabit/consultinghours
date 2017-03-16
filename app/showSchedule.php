@@ -16,11 +16,11 @@
         $db = new Database;
         $user = new User($db);
         $user->setId($paysheet);
-        $users = $user->viewProfessor();
+        $users = $user->viewSchedule();
         ?>
         <div class="container">
             <div class="col-lg-12">
-                <h2 class="text-center text-primary">Users List</h2>
+                <h2 class="text-center text-primary">Schedule</h2>
                 <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
                 <?php
                 if( ! empty( $users ) )
@@ -28,21 +28,19 @@
                 ?>
                 <table class="table table-striped">
                     <tr>
-                        <th>Student</th>
-                        <th>Date</th>
+                        <th>Day</th>
                         <th>Start</th>
                         <th>Finish</th>
-                        <th>Topic</th>
+                        <th>Type</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
                     ?>
                         <tr>
-                            <td><?php echo $user->student ?></td>
-                            <td><?php echo $user->dia ?></td>
-                            <td><?php echo $user->start ?></td>
+                            <td><?php echo $user->day ?></td>
+                            <td><?php echo $user->start?></td>
                             <td><?php echo $user->finish ?></td>
-                            <td><?php echo $user->topic ?></td>
+                            <td><?php echo $user->type ?></td>
 
                         </tr>
                     <?php

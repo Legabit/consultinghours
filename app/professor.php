@@ -30,6 +30,13 @@
                         <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
                         <input type="submit" class="btn btn-info btn-block" value="Make schedule">
                     </form>
+                    
+                </div>
+                <div class="col-lg-12" style="margin-bottom: 100px">
+                    <form action="showSchedule.php" method="post">
+                        <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
+                        <input type="submit" class="btn btn-info btn-block" value="Show schedule">
+                    </form>
                 </div>
             </div>
         </div>

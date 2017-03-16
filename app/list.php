@@ -15,6 +15,9 @@
                 <div class="col-lg-12" style="margin-bottom: 100px">
                     <a class="btn btn-info btn-block" href="selectStudent.php">Student</a>
                 </div>
+                <div class="col-lg-12" style="margin-bottom: 100px">
+                    <a class="btn btn-info btn-block" href="profselect.php">View Professors Schedule</a>
+                </div>
             </div>
         </div>
     </body>

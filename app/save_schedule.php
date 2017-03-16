@@ -7,20 +7,19 @@ if (empty($_POST['submit']))
 }
 
 $args = array(
-    'day'  => FILTER_SANITIZE_STRING,
-    'type'  => FILTER_SANITIZE_STRING,
+    'dia'  => FILTER_SANITIZE_STRING,
+    'tipo'  => FILTER_SANITIZE_STRING,
     'start'  => FILTER_SANITIZE_STRING,
     'finish'  => FILTER_SANITIZE_STRING,
 );
 
 $post = (object)filter_input_array(INPUT_POST, $args);
-
 $db = new Database;
 $user = new User($db);
-$user->setDay($post->day);
-$user->setType($post->type);
+$user->setDia($post->dia);
+$user->setTipo($post->tipo);
 $user->setStart($post->start);
-$user->setFinish($post->finish)
+$user->setFinish($post->finish);
 $user->saveSchedule();
-header("Location:" . User::baseurl() . "app/professor.php");
+header("Location:" . User::baseurl() . "app/list.php");
 ?>

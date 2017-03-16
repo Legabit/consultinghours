@@ -153,7 +153,7 @@ class User implements IUser {
     public function viewHours(){
         try{
             if(!empty($this->id)){
-                $query = $this->con->prepare('select day,start,finish from hours where professor = ?');
+                $query = $this->con->prepare('select id,day,start,finish,type from hours where professor = ?');
                 $query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();

@@ -23,8 +23,8 @@
                 <h2 class="text-center text-primary">Users List</h2>
                 <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
 
-                <form action="professor.php" method="post">
-                        <select name="professor" class="form-control">
+                <form action="saveApointment.php" method="post">
+                        <select name="apointment" class="form-control">
                             <?php foreach( $users as $user ) {
                                 echo '<option value="'.$user->id.'">'.$user->id.' '.$user->day.' '.$user->start.' '.$user->finish.' '.$user->type. '</option>';
                             }

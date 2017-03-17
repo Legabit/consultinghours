@@ -44,6 +44,15 @@ CREATE TABLE availableDates (
     topic			 varchar(50)
 );
 
+CREATE TABLE asesorias (
+    id serial PRIMARY KEY,
+    student int references student(id),
+    professor int references professor(id),
+    topic varchar(100),
+    dateh date,
+    start time,
+    finish time
+);
 
 
 

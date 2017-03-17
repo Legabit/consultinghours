@@ -76,6 +76,22 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+    public function saveAppointment() {
+        try{
+            $query = $this->con->prepare('INSERT INTO asesorias (student, professor, topic, dateh, start, finish) values (?, ?, ?, ?, ?, ?)');
+            $query->bindParam(1, $this->id, PDO::PARAM_STR);
+            $query->bindParam(2, $this->professor, PDO::PARAM_STR);
+            $query->bindParam(3, $this->topic, PDO::PARAM_STR);
+            $query->bindParam(4, $this->date, PDO::PARAM_STR);
+            $query->bindParam(5, $this->start, PDO::PARAM_STR);  
+            $query->bindParam(4, $this->finish, PDO::PARAM_STR);
+            $query->execute();
+            $this->con->close(); 
+        }
+        catch(PDOException $e) {
+            echo  $e->getMessage();
+        }
+    }
     public function update(){
         try{
             $query = $this->con->prepare('UPDATE users SET username = ?, password = ? WHERE id = ?');

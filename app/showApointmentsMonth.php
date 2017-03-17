@@ -8,27 +8,27 @@
 <body>
     <?php
     require_once "../models/User.php";
-    $paysheet = filter_input(INPUT_POST, 'student');
+    $paysheet = filter_input(INPUT_POST, 'professor');
     if( ! $paysheet )
     {
         header("Location:" . User::baseurl() . "app/list.php");
     }
     $db = new Database;
     $user = new User($db);
-    $user->setId($paysheet);
-    $users = $user->viewAppointmentsSt();
+    $user->setProfessor($paysheet);
+    $users = $user->viewAppointmentsMonth();
     ?>
     <div class="container">
         <div class="col-lg-12">
-            <h2 class="text-center text-primary">My Appointments</h2>
-            <h2 class="text-center text-primary">A0<?php echo $paysheet; ?></h2>
+            <h2 class="text-center text-primary">Appointments List</h2>
+            <h2 class="text-center text-primary">L0<?php echo $paysheet; ?></h2>
             <?php
             if( ! empty( $users ) )
             {
                 ?>
                 <table class="table table-striped">
                     <tr>
-                        <th>Professor</th>
+                        <th>Student</th>
                         <th>Topic</th>
                         <th>Date</th>
                         <th>Start</th>
@@ -38,7 +38,7 @@
                     {
                         ?>
                         <tr>
-                            <td><?php echo $user->professor ?></td>
+                            <td><?php echo $user->student ?></td>
                             <td><?php echo $user->topic ?></td>
                             <td><?php echo $user->dateh ?></td>
                             <td><?php echo $user->start ?></td>

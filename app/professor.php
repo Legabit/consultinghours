@@ -30,6 +30,18 @@
                 </form>
             </div>
             <div class="col-lg-12" style="margin-bottom: 100px">
+                <form action="showApointmentsWeek.php" method="post">
+                    <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
+                    <input type="submit" class="btn btn-info btn-block" value="Show Apointments For This Week">
+                </form>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 100px">
+                <form action="showApointmentsMonth.php" method="post">
+                    <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
+                    <input type="submit" class="btn btn-info btn-block" value="Show Apointments For This Month">
+                </form>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 100px">
                 <form action="makeSchedule.php" method="post">
                     <input type="hidden" value="<?php echo $paysheet; ?>" name="professor">
                     <input type="submit" class="btn btn-info btn-block" value="Make schedule">

@@ -15,8 +15,8 @@
     }
     $db = new Database;
     $user = new User($db);
-    $user->setId($paysheet);
-    $users = $user->viewProfessor();
+    $user->setProfessor($paysheet);
+    $users = $user->viewAppointments();
     ?>
     <div class="container">
         <div class="col-lg-12">
@@ -29,20 +29,20 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Student</th>
+                        <th>Topic</th>
                         <th>Date</th>
                         <th>Start</th>
                         <th>Finish</th>
-                        <th>Topic</th>
                     </tr>
                     <?php foreach( $users as $user )
                     {
                         ?>
                         <tr>
                             <td><?php echo $user->student ?></td>
-                            <td><?php echo $user->date ?></td>
+                            <td><?php echo $user->topic ?></td>
+                            <td><?php echo $user->dateh ?></td>
                             <td><?php echo $user->start ?></td>
                             <td><?php echo $user->finish ?></td>
-                            <td><?php echo $user->topic ?></td>
 
                         </tr>
                         <?php

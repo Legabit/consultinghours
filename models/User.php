@@ -186,6 +186,62 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+    public function viewAppointments(){
+        try{
+            if(!empty($this->professor)){
+                $query = $this->con->prepare('select student, topic, dateh, start, finish from asesorias where professor = ? order by dateh');
+                $query->bindParam(1, $this->professor, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function viewAppointmentsSt(){
+        try{
+            if(!empty($this->id)){
+                $query = $this->con->prepare('select professor, topic, dateh, start, finish from asesorias where student = ? order by dateh');
+                $query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function viewAppointmentsWeek(){
+        try{
+            if(!empty($this->professor)){
+                $query = $this->con->prepare('select student, topic, dateh, start, finish from asesorias where professor = ? and extract(week from now()) = extract(week from dateh) order by dateh');
+                $query->bindParam(1, $this->professor, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function viewAppointmentsMonth(){
+        try{
+            if(!empty($this->professor)){
+                $query = $this->con->prepare('select student, topic, dateh, start, finish from asesorias where professor = ? and extract(month from now()) = extract(month from dateh) order by dateh');
+                $query->bindParam(1, $this->professor, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
     public function get(){
         try{
             if(is_int($this->id)){

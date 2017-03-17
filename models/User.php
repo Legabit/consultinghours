@@ -84,7 +84,7 @@ class User implements IUser {
             $query->bindParam(3, $this->topic, PDO::PARAM_STR);
             $query->bindParam(4, $this->date, PDO::PARAM_STR);
             $query->bindParam(5, $this->start, PDO::PARAM_STR);  
-            $query->bindParam(4, $this->finish, PDO::PARAM_STR);
+            $query->bindParam(6, $this->finish, PDO::PARAM_STR);
             $query->execute();
             $this->con->close(); 
         }

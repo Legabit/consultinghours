@@ -26,5 +26,5 @@ $user->setTipo($post->tipo);
 $user->setStart($post->start);
 $user->setFinish($post->finish);
 $user->saveSchedule();
-header("Location:" . User::baseurl() . "app/list.php");
+header("Location:" . User::baseurl() . "list.php");
 ?>

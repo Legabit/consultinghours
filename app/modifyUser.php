@@ -9,15 +9,15 @@
   <?php
   require_once "../models/User.php";
   $db = new Database;
+  $paysheet = filter_input(INPUT_POST, 'id');
   $user = new User($db);
   session_start();
-  $paysheet = $_SESSION['gg'];
   ?>
   <div class="container">
     <div class="col-lg-12">
       <h2 class="text-center text-primary">Add User</h2>
       <div class="col-lg-6 col-lg-offset-3">
-       <form action="save_usr.php" method="post">  
+       <form action="modify_usr.php" method="post">  
          <label for="name">name</label>
          <input type="text" name="name" class="form-control"/>
          <input class="btn btn-success btn-block btn-md" type="submit" name="submit" value="Seleccionar"></input>

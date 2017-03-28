@@ -23,7 +23,7 @@
                 <a class="btn btn-info btn-block" href="addUser.php">Add User</a>
             </div>
             <div class="col-lg-12" style="margin-bottom: 100px">
-                <a class="btn btn-info btn-block" href="modifyUser.php">Modify User</a>
+                <a class="btn btn-info btn-block" href="selectUser.php">Modify User</a>
             </div>
             <div class="col-lg-12" style="margin-bottom: 100px">
                 <a class="btn btn-info btn-block" href="deleteUser.php">Delete User</a>

@@ -6,11 +6,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
+    <?php
+        require_once "../models/User.php";
+        session_start();
+        function makelogin($inputemail, $inputpass){
+            $db = new Database;
+            $user = new User($db);
+        }
+    ?>
     <div class="container">
         <div class="col-lg-12">
             <h2 class="text-center text-primary">Login</h2>
+            <?php
+                if(isset($_POST['submit'])){
 
-            <form action="main.php" method="post">            
+                }
+            ?>
+            <form action="login.php" method="post">            
                 <br>
                 <label for="topic">Email:</label>
                 <input type="text" name="topic" class="form-control"/>

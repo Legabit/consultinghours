@@ -324,6 +324,18 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+    public function getUsuario(){
+        try{
+                $query = $this->con->prepare('SELECT id, password FROM usuar order by id asc');
+                //$query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
     public function delete(){
         try{
             $query = $this->con->prepare('DELETE FROM users WHERE id = ?');

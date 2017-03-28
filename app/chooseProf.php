@@ -14,7 +14,6 @@
     session_start();
     $matricula = $_SESSION['ss'];
 
-
     $_SESSION['ss'] = $matricula;
 
     ?>

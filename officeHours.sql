@@ -61,10 +61,10 @@ CREATE TABLE asesorias (
     finish time
 );
 
-INSERT INTO usuar VALUES (01325081,'6fb88c0c4156bae22639348760c151870072e1c7', 'a01325081@itesm.mx', 'j4hf83jdmwkeiqoq', 2, TRUE);
-INSERT INTO usuar VALUES (01328484,'e752529a12218ad9759044a4a2b79bda51882fe9', 'a01328484@itesm.mx', 'hdgryertwqpoerte', 2, FALSE);
-INSERT INTO usuar VALUES (01327685,'5c6d9edc3a951cda763f650235cfc41a3fc23fe8', 'a01327685@itesm.mx', 'hyertyeuqieiwuej', 1, TRUE);
-INSERT INTO usuar VALUES (01326798,'a3ddea8602dd587f3a6fd4f506b4242a7ff12f6d', 'a01326798@itesm.mx', 'sifjiqjwihrqwurw', 1, TRUE);
+INSERT INTO usuar VALUES (01325081,'6fb88c0c4156bae22639348760c151870072e1c7', 'a01325081@itesm.mx', 2 );
+INSERT INTO usuar VALUES (01328484,'e752529a12218ad9759044a4a2b79bda51882fe9', 'a01328484@itesm.mx', 2 );
+INSERT INTO usuar VALUES (01327685,'5c6d9edc3a951cda763f650235cfc41a3fc23fe8', 'a01327685@itesm.mx', 1 );
+INSERT INTO usuar VALUES (01326798,'a3ddea8602dd587f3a6fd4f506b4242a7ff12f6d', 'a01326798@itesm.mx', 1 );
 
 INSERT INTO student VALUES (01325081,'Ricardo Rodiles Legaspi');
 INSERT INTO student VALUES (01328484,'Alejandro Tovar');

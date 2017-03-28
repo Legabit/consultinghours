@@ -17,23 +17,9 @@
     <div class="col-lg-12">
       <h2 class="text-center text-primary">Add User</h2>
       <div class="col-lg-6 col-lg-offset-3">
-       <form action="save_usr.php" method="post"> 
-
-         <label for="id">id(matricula)</label>
-         <input type="text" name="id" class="form-control"/>
-         <br>
-         <label for="email">email</label>
-         <input type="text" name="email" class="form-control"/>
-         <br>
+       <form action="save_usr.php" method="post">  
          <label for="name">name</label>
          <input type="text" name="name" class="form-control"/>
-         <br>       
-         <label for="typeUser">Type of user</label>  <br>
-         <input type="radio" name="typeUser" value="1" checked> Professor<br>
-         <input type="radio" name="typeUser" value="2"> Student<br> 
-         <br>
-         
-
          <input class="btn btn-success btn-block btn-md" type="submit" name="submit" value="Seleccionar"></input>
        </form>
      </div>

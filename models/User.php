@@ -22,6 +22,9 @@ class User implements IUser {
     public function setEmail($email){
         $this->email = $email;
     }
+    public function setName($name){
+        $this->name = $name;
+    }
     public function setPassword($password){
         $this->password = $password;
     }
@@ -102,17 +105,19 @@ class User implements IUser {
             $query->bindParam(4, $this->typeUser, PDO::PARAM_STR);
             $query->execute();
             $this->con->close();
-            if ($typeUser==1) {
-                $query = $this->con->prepare('INSERT INTO student (id, name) values (?,?)');
-                $query->bindParam(1, $this->id, PDO::PARAM_STR);
-                $query->bindParam(2, $this->name, PDO::PARAM_STR);
+            $query2;
+            if ($this->typeUser==2) {
+                $query2 = $this->con->prepare('INSERT INTO student (id, name) values (?,?)');
+                $query2->bindParam(1, $this->id, PDO::PARAM_STR);
+                $query2->bindParam(2, $this->name, PDO::PARAM_STR);
             }
-            if ($typeUser==2) {
-                $query = $this->con->prepare('INSERT INTO professor (id, name) values (?,?)');
-                $query->bindParam(1, $this->id, PDO::PARAM_STR);
-                $query->bindParam(2, $this->name, PDO::PARAM_STR);
+            if ($this->typeUser==1) {
+                $query2 = $this->con->prepare('INSERT INTO professor (id, name) values (?,?)');
+                $query2->bindParam(1, $this->id, PDO::PARAM_STR);
+                $query2->bindParam(2, $this->name, PDO::PARAM_STR);
             }
-
+            $query2->execute();
+            $this->con->close();
         }
         catch(PDOException $e) {
             echo  $e->getMessage();
@@ -326,7 +331,19 @@ class User implements IUser {
     }
     public function getUsuario(){
         try{
-                $query = $this->con->prepare('SELECT * FROM usuar order by id asc');
+                $query = $this->con->prepare('SELECT * FROM usuar order by id asc ');
+                //$query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+    public function getSinAdmin(){
+        try{
+                $query = $this->con->prepare('SELECT * FROM usuar where id > 1 order by id asc');
                 //$query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();
@@ -339,6 +356,18 @@ class User implements IUser {
     public function delete(){
         try{
             $query = $this->con->prepare('DELETE FROM users WHERE id = ?');
+            $query->bindParam(1, $this->id, PDO::PARAM_INT);
+            $query->execute();
+            $this->con->close();
+            return true;
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+     public function deleteUsuario(){
+        try{
+            $query = $this->con->prepare('DELETE FROM usuar WHERE id = ?');
             $query->bindParam(1, $this->id, PDO::PARAM_INT);
             $query->execute();
             $this->con->close();

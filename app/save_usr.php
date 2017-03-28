@@ -22,10 +22,10 @@ $db = new Database;
 $token = substr(sha1(uniqid(rand(), true)),0,16) ;
 $user = new User($db);
 $user->setId($post->id);
-$user->setEmail($post->mail);
+$user->setEmail($post->email);
 $user->setName($post->name);
 $user->setTypeUser($post->typeUser);
 $user->setPassword($token);
 $user->saveUser();
-header("Location:" . User::baseurl() . "admin.php");
+header("Location:" . User::baseurl() . "app/admin.php");
 ?>

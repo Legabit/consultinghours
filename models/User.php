@@ -326,7 +326,7 @@ class User implements IUser {
     }
     public function getUsuario(){
         try{
-                $query = $this->con->prepare('SELECT id, password FROM usuar order by id asc');
+                $query = $this->con->prepare('SELECT * FROM usuar order by id asc');
                 //$query->bindParam(1, $this->id, PDO::PARAM_INT);
                 $query->execute();
                 $this->con->close();

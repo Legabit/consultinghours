@@ -12,6 +12,12 @@
         function makelogin($inputemail, $inputpass){
             $db = new Database;
             $user = new User($db);
+            $users = $user->getUsuario();
+            foreach ($users as $usuar) {
+                if(strcmp($inputemail, $usuar->) == 0){
+
+                }
+            }
         }
     ?>
     <div class="container">

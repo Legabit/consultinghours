@@ -12,8 +12,21 @@ class User implements IUser {
     private $topic;
     private $dia;
     private $tipo;
+    private $email;
+    private $typeUser;
+    private $name;
+    private $password;
     public function __construct(Database $db){
         $this->con = new $db;
+    }
+    public function setEmail($email){
+        $this->email = $email;
+    }
+    public function setPassword($password){
+        $this->password = $password;
+    }
+    public function setTypeUser($typeUser){
+        $this->typeUser = $typeUser;
     }
     public function setId($id){
         $this->id = $id;
@@ -71,6 +84,35 @@ class User implements IUser {
             $query->bindParam(5, $this->tipo, PDO::PARAM_STR);  
             $query->execute();
             $this->con->close(); 
+        }
+        catch(PDOException $e) {
+            echo  $e->getMessage();
+        }
+    }
+    public function saveUser() {
+        try{
+            //$new =('id from hours order by id desc LIMIT 1');
+            //$new++;
+            //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
+            $query = $this->con->prepare('INSERT INTO usuar (id, password,email,type) values (?,?,?,?)');
+            //$query->bindParam(1,$new);
+            $query->bindParam(1, $this->id, PDO::PARAM_STR);
+            $query->bindParam(2, $this->password, PDO::PARAM_STR);
+            $query->bindParam(3, $this->email, PDO::PARAM_STR);
+            $query->bindParam(4, $this->typeUser, PDO::PARAM_STR);
+            $query->execute();
+            $this->con->close();
+            if ($typeUser==1) {
+                $query = $this->con->prepare('INSERT INTO student (id, name) values (?,?)');
+                $query->bindParam(1, $this->id, PDO::PARAM_STR);
+                $query->bindParam(2, $this->name, PDO::PARAM_STR);
+            }
+            if ($typeUser==2) {
+                $query = $this->con->prepare('INSERT INTO professor (id, name) values (?,?)');
+                $query->bindParam(1, $this->id, PDO::PARAM_STR);
+                $query->bindParam(2, $this->name, PDO::PARAM_STR);
+            }
+
         }
         catch(PDOException $e) {
             echo  $e->getMessage();

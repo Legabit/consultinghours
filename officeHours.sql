@@ -2,9 +2,7 @@ CREATE TABLE usuar (
     id               int PRIMARY KEY CHECK(id>0),
     password varchar(100),
     email varchar(100),
-    token varchar(16),
-    type int,
-    valid boolean
+    type int
 );
 
 CREATE TABLE student (

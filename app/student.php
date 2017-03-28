@@ -9,16 +9,19 @@
     <?php
     require_once "../models/User.php";
     session_start();
+    $type = $_SESSION['type'];
     $matricula = $_SESSION['matricula'];
-    $_SESSION['ss'] = $matricula;
     
-    if( ! $matricula )
+    if($type != 2)
     {
-        header("Location:" . User::baseurl() . "app/list.php");
+        header("Location:" . User::baseurl() . "app/logout.php");
     }
 
-    
-    
+    if( ! $matricula )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
     ?>
     <div class="container">
         <div class="col-lg-12">
@@ -39,7 +42,7 @@
             <div class="col-lg-12" style="margin-bottom: 100px">
                 <br>
                 <br>
-                <a class="btn btn-info btn-block" href="list.php">Home</a>
+                <a class="btn btn-info btn-block" href="logout.php">Logout</a>
             </div>
         </div>
     </div>

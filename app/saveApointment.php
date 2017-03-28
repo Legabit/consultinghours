@@ -7,8 +7,24 @@ if (empty($_POST['submit']))
 }
 
 session_start();
-$paysheet = $_SESSION['gg'];
-$matricula = $_SESSION['ss'];
+    $type = $_SESSION['type'];
+    $matricula = $_SESSION['matricula'];
+    $paysheet = $_SESSION['gg'];
+    
+    if($type != 2)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if( ! $matricula )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if( ! $paysheet )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
 
 $args = array(
     'topic'  => FILTER_SANITIZE_STRING,
@@ -28,5 +44,5 @@ $user->setDate($post->dateh);
 $user->setStart($post->start);
 $user->setFinish($post->finish);
 $user->saveAppointment();
-header("Location:" . User::baseurl() . "app/list.php");
+header("Location:" . User::baseurl() . "app/student.php");
 ?>

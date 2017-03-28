@@ -8,10 +8,18 @@
 <body>
     <?php
     require_once "../models/User.php";
-    $paysheet = filter_input(INPUT_POST, 'professor');
-    if( ! $paysheet )
+   session_start();
+    $paysheet = $_SESSION['paysheet'];
+    $type = $_SESSION['type'];
+    
+    if($type != 1)
     {
-        header("Location:" . User::baseurl() . "app/list.php");
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if(!$paysheet)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
     }
     $db = new Database;
     $user = new User($db);
@@ -60,7 +68,7 @@
         <div class="col-lg-12" style="margin-bottom: 100px">
             <br>
             <br>
-            <a class="btn btn-info btn-block" href="list.php">Home</a>
+            <a class="btn btn-info btn-block" href="professor.php">Home</a>
         </div>
     </div>
 </body>

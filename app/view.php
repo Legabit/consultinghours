@@ -8,20 +8,28 @@
 <body>
     <?php
     require_once "../models/User.php";
-    $paysheet = filter_input(INPUT_POST, 'student');
-    if( ! $paysheet )
+    session_start();
+    $type = $_SESSION['type'];
+    $matricula = $_SESSION['matricula'];
+    
+    if($type != 2)
     {
-        header("Location:" . User::baseurl() . "app/list.php");
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if( ! $matricula )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
     }
     $db = new Database;
     $user = new User($db);
-    $user->setId($paysheet);
+    $user->setId($matricula);
     $users = $user->viewAppointmentsSt();
     ?>
     <div class="container">
         <div class="col-lg-12">
             <h2 class="text-center text-primary">My Appointments</h2>
-            <h2 class="text-center text-primary">A0<?php echo $paysheet; ?></h2>
+            <h2 class="text-center text-primary">A0<?php echo $matricula; ?></h2>
             <?php
             if( ! empty( $users ) )
             {
@@ -54,7 +62,7 @@
             else
             {
                 ?>
-                <div class="alert alert-danger" style="margin-top: 100px">You dont have apointments</div>
+                <div class="alert alert-danger" style="margin-top: 100px">You dont have appointments</div>
                 <?php
             }
             ?>
@@ -62,7 +70,7 @@
         <div class="col-lg-12" style="margin-bottom: 100px">
             <br>
             <br>
-            <a class="btn btn-info btn-block" href="list.php">Home</a>
+            <a class="btn btn-info btn-block" href="student.php">Home</a>
         </div>
     </div>
 </body>

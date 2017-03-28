@@ -10,12 +10,16 @@
     require_once "../models/User.php";
     session_start();
     $paysheet = $_SESSION['paysheet'];
-    $_SESSION['gg'] = $paysheet;
+    $type = $_SESSION['type'];
     
-
-    if( ! $paysheet )
+    if($type != 1)
     {
-        header("Location:" . User::baseurl() . "app/list.php");
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if(!$paysheet)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
     }
 
 
@@ -58,7 +62,7 @@
             <div class="col-lg-12" style="margin-bottom: 100px">
                 <br>
                 <br>
-                <a class="btn btn-info btn-block" href="list.php">Home</a>
+                <a class="btn btn-info btn-block" href="logout.php">Logout</a>
             </div>
         </div>
     </div>

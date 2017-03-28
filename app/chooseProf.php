@@ -8,13 +8,22 @@
 <body>
     <?php
     require_once "../models/User.php";
+    session_start();
+    $type = $_SESSION['type'];
+    $matricula = $_SESSION['matricula'];
+    
+    if($type != 2)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if( ! $matricula )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
     $db = new Database;
     $user = new User($db);
     $users = $user->getProfessor();
-    session_start();
-    $matricula = $_SESSION['ss'];
-
-    $_SESSION['ss'] = $matricula;
 
     ?>
     <div class="container">
@@ -34,7 +43,7 @@
                 <div class="col-lg-12" style="margin-bottom: 100px">
                     <br>
                     <br>
-                    <a class="btn btn-info btn-block" href="list.php">Home</a>
+                    <a class="btn btn-info btn-block" href="student.php">Home</a>
                 </div>
             </div>
         </div>

@@ -10,8 +10,18 @@
     require_once "../models/User.php";
     $paysheet = filter_input(INPUT_POST, 'professor');
     session_start();
-    $matricula = $_SESSION['ss'];
-    $_SESSION['ss'] = $matricula;
+    $type = $_SESSION['type'];
+    $matricula = $_SESSION['matricula'];
+    
+    if($type != 2)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
+
+    if( ! $matricula )
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
     $_SESSION['gg'] = $paysheet;
 
     $db = new Database;
@@ -83,7 +93,7 @@
             <div class="col-lg-12" style="margin-bottom: 100px">
                 <br>
                 <br>
-                <a class="btn btn-info btn-block" href="list.php">Home</a>
+                <a class="btn btn-info btn-block" href="student.php">Home</a>
             </div>
 
         </div>

@@ -41,6 +41,10 @@
             </div>
             <div class="col-lg-12" style="margin-bottom: 100px">
                 <br>
+                <a class="btn btn-info btn-block" href="changePass.php">Change Password</a>
+            </div>
+            <div class="col-lg-12" style="margin-bottom: 100px">
+                <br>
                 <br>
                 <a class="btn btn-info btn-block" href="logout.php">Logout</a>
             </div>

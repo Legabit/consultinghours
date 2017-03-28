@@ -123,6 +123,51 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+    public function updateUser() {
+        try{
+            //$new =('id from hours order by id desc LIMIT 1');
+            //$new++;
+            //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
+            $query = $this->con->prepare('UPDATE usuar SET email = ? WHERE id = ?');
+            //$query->bindParam(1,$new);
+            $query->bindParam(1, $this->email, PDO::PARAM_STR);
+            $query->bindParam(2, $this->id, PDO::PARAM_INT);
+            $query->execute();
+            $this->con->close();
+            $query2;
+            if ($this->typeUser==2) {
+                $query2 = $this->con->prepare('UPDATE student SET name = ? WHERE id = ?');
+                $query2->bindParam(1, $this->name, PDO::PARAM_STR);
+                $query2->bindParam(2, $this->id, PDO::PARAM_INT);
+            }
+            if ($this->typeUser==1) {
+                $query2 = $this->con->prepare('UPDATE professor SET name = ? WHERE id = ?');
+                $query2->bindParam(1, $this->name, PDO::PARAM_STR);
+                $query2->bindParam(2, $this->id, PDO::PARAM_INT);
+            }
+            $query2->execute();
+            $this->con->close();
+        }
+        catch(PDOException $e) {
+            echo  $e->getMessage();
+        }
+    }
+    public function updatePassword() {
+        try{
+            //$new =('id from hours order by id desc LIMIT 1');
+            //$new++;
+            //$query =$this->con->prepare('INSERT INTO hours (id,day, professor,start,finish,type,period) values (10,"Friday",01326798,"19:00","20:00","officeHour",1');
+            $query = $this->con->prepare('UPDATE usuar SET password = ? WHERE id = ?');
+            //$query->bindParam(1,$new);
+            $query->bindParam(1, $this->password, PDO::PARAM_STR);
+            $query->bindParam(2, $this->id, PDO::PARAM_INT);
+            $query->execute();
+            $this->con->close();
+        }
+        catch(PDOException $e) {
+            echo  $e->getMessage();
+        }
+    }
     public function saveAppointment() {
         try{
             $query = $this->con->prepare('INSERT INTO asesorias (student, professor, topic, dateh, start, finish) values (?, ?, ?, ?, ?, ?)');
@@ -341,6 +386,7 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+
     public function getSinAdmin(){
         try{
                 $query = $this->con->prepare('SELECT * FROM usuar where id > 1 order by id asc');
@@ -353,6 +399,33 @@ class User implements IUser {
             echo  $e->getMessage();
         }
     }
+
+    public function getNameSt(){
+        try{
+                $query = $this->con->prepare('SELECT * FROM student order by id asc ');
+                //$query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+
+    public function getNamePr(){
+        try{
+                $query = $this->con->prepare('SELECT * FROM professor order by id asc ');
+                //$query->bindParam(1, $this->id, PDO::PARAM_INT);
+                $query->execute();
+                $this->con->close();
+                return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        catch(PDOException $e){
+            echo  $e->getMessage();
+        }
+    }
+
     public function delete(){
         try{
             $query = $this->con->prepare('DELETE FROM users WHERE id = ?');

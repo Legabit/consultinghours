@@ -8,18 +8,65 @@
 <body>
   <?php
   require_once "../models/User.php";
-  $db = new Database;
-  $paysheet = filter_input(INPUT_POST, 'id');
-  $user = new User($db);
   session_start();
+  $type = $_SESSION['type'];
+  $paysheet = filter_input(INPUT_POST, 'id');
+  if($type != 3)
+  {
+    header("Location:" . User::baseurl() . "app/logout.php");
+  }
+  if(!$paysheet){
+    header("Location:" . User::baseurl() . "app/logout.php");
+  }
+  $db = new Database;
+  $user = new User($db);
+  $users = $user->getUsuario();
+  $student = $user->getNameSt();
+  $professor = $user->getNamePr();
+
+  $formerid;
+  $formeremail;
+  $formername;
+  $formertype;
+
+  foreach ($users as $usuar) {
+    if($usuar->id==$paysheet){
+      $formerid = $usuar->id;
+      $formeremail = $usuar->email;
+      $formertype = $usuar->type;
+    }
+  }
+  if($formertype == 1){
+    foreach ($professor as $prof) {
+      if($prof->id==$paysheet)
+        $formername = $prof->name;
+    }
+  }
+  if($formertype == 2){
+    foreach ($student as $stu) {
+      if($stu->id==$paysheet)
+        $formername = $stu->name;
+    }
+  }
   ?>
   <div class="container">
     <div class="col-lg-12">
-      <h2 class="text-center text-primary">Add User</h2>
+      <h2 class="text-center text-primary">Edit User</h2>
       <div class="col-lg-6 col-lg-offset-3">
-       <form action="modify_usr.php" method="post">  
+       <form action="modify_user.php" method="post"> 
+
+         <input type="hidden" name="id" value="<?php echo $formerid; ?>" class="form-control" />
+         <br>
+         <label for="email">email</label>
+         <input type="text" name="email" value="<?php echo $formeremail; ?>" class="form-control"/>
+         <br>
          <label for="name">name</label>
-         <input type="text" name="name" class="form-control"/>
+         <input type="text" name="name" value="<?php echo $formername; ?>" class="form-control"/>
+         <br> 
+         <input type="hidden" name="typeUser" value="<?php echo $formertype; ?>" class="form-control" />
+         <br>
+     
+
          <input class="btn btn-success btn-block btn-md" type="submit" name="submit" value="Seleccionar"></input>
        </form>
      </div>

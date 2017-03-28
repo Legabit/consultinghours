@@ -8,15 +8,16 @@
 <body>
     <?php
     require_once "../models/User.php";
-    $paysheet = filter_input(INPUT_POST, 'professor');
+    session_start();
+    $paysheet = $_SESSION['paysheet'];
+    $_SESSION['gg'] = $paysheet;
+    
 
     if( ! $paysheet )
     {
         header("Location:" . User::baseurl() . "app/list.php");
     }
 
-    session_start();
-    $_SESSION['gg'] = $paysheet;
 
     ?>
     <div class="container">

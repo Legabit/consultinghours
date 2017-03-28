@@ -8,15 +8,16 @@
 <body>
     <?php
     require_once "../models/User.php";
-    $matricula = filter_input(INPUT_POST, 'student');
+    session_start();
+    $matricula = $_SESSION['matricula'];
+    $_SESSION['ss'] = $matricula;
     
     if( ! $matricula )
     {
         header("Location:" . User::baseurl() . "app/list.php");
     }
 
-    session_start();
-    $_SESSION['ss'] = $matricula;
+    
     
     ?>
     <div class="container">

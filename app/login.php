@@ -19,7 +19,7 @@
                     if(strcmp($inputpass, $usuar->password) == 0){
                         switch ($usuar->type) {
                             case 0:
-                                $_SESSION['type'] = 0;
+                                $_SESSION['type'] = 3;
                                 header('Location: admin.php');
                                 break;
                             case 1:
@@ -48,7 +48,7 @@
             ?>
             <form action="login.php" method="post">            
                 <br>
-                <label for="topic">Email:</label>
+                <label for="topic">User:</label>
                 <input type="text" name="eemail" class="form-control"/>
                 <br>
                 <label for="dateh">Password:</label>

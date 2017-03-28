@@ -8,13 +8,20 @@
 <body>
     <?php
     require_once "../models/User.php";
+    session_start();
+    $type = $_SESSION['type'];
+
+    if($type != 3)
+    {
+        header("Location:" . User::baseurl() . "app/logout.php");
+    }
     $db = new Database;
     $user = new User($db);
     $users = $user->getSinAdmin();
     ?>
     <div class="container">
         <div class="col-lg-12">
-            <h2 class="text-center text-primary">Select a User</h2>
+            <h2 class="text-center text-primary">Select user to delete</h2>
             <div class="col-lg-6 col-lg-offset-3">
                 <form action="borrarUsuario.php" method="post">
                     <select name="id" class="form-control">

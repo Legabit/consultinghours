@@ -8,10 +8,15 @@
 <body>
   <?php
   require_once "../models/User.php";
+  session_start();
+  $type = $_SESSION['type'];
+
+  if($type != 3)
+  {
+    header("Location:" . User::baseurl() . "app/logout.php");
+  }
   $db = new Database;
   $user = new User($db);
-  session_start();
-  $paysheet = $_SESSION['gg'];
   ?>
   <div class="container">
     <div class="col-lg-12">
@@ -19,7 +24,7 @@
       <div class="col-lg-6 col-lg-offset-3">
        <form action="save_usr.php" method="post"> 
 
-         <label for="id">id(matricula)</label>
+        <label for="id">id(without A or L)</label>
          <input type="text" name="id" class="form-control"/>
          <br>
          <label for="email">email</label>
@@ -29,8 +34,8 @@
          <input type="text" name="name" class="form-control"/>
          <br>       
          <label for="typeUser">Type of user</label>  <br>
-         <input type="radio" name="typeUser" value="1" checked> Professor<br>
-         <input type="radio" name="typeUser" value="2"> Student<br> 
+         <input type="radio" name="typeUser" value="1"> Professor<br>
+         <input type="radio" name="typeUser" value="2" checked> Student<br> 
          <br>
          
 
